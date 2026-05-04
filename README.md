@@ -2,10 +2,10 @@
 
 Python-приложение для поиска вакансий на HeadHunter, уведомлений в Telegram и будущей автоматизации откликов.
 
-## Локальный запуск API
+## Локальный запуск API без Docker
 
 ```powershell
-uv run uvicorn --app-dir src hh_agent.main:app --reload
+uv run uvicorn hh_agent.main:app --reload
 ```
 
 ## Настройки
@@ -17,3 +17,23 @@ Copy-Item .env.example .env
 ```
 
 Файл `.env` хранит локальные секреты и не должен попадать в git.
+
+## Локальный запуск через Docker
+
+Запуск API и PostgreSQL:
+
+```powershell
+docker compose up -d
+```
+
+Логи API:
+
+```powershell
+docker compose logs api -f
+```
+
+Проверка подключения из API:
+
+```text
+http://127.0.0.1:8000/health/db
+```

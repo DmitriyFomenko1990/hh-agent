@@ -1,0 +1,31 @@
+services:
+  api:
+    build: .
+    container_name: hh-agent-api
+    environment:
+      DATABASE_URL: postgresql+asyncpg://hh_agent:hh_agent@postgres:5432/hh_agent
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18-alpine
+    container_name: hh-agent-postgres
+    environment:
+      POSTGRES_DB: hh_agent
+      POSTGRES_USER: hh_agent
+      POSTGRES_PASSWORD: hh_agent
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hh_agent -d hh_agent"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

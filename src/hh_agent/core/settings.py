@@ -14,7 +14,7 @@ class Settings(BaseSettings):
 
     telegram_bot_token: str = ""
 
-    database_url: str = "sqlite+aiosqlite:///./hh_agent.db"
+    database_url: str = "postgresql+asyncpg://hh_agent:hh_agent@localhost:5432/hh_agent"
 
     model_config = SettingsConfigDict(
         env_file=".env",
