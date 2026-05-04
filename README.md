@@ -37,3 +37,17 @@ docker compose logs api -f
 ```text
 http://127.0.0.1:8000/health/db
 ```
+
+## Миграции базы данных
+
+Применить миграции:
+
+```powershell
+docker compose run --rm api uv run alembic upgrade head
+```
+
+Проверить текущую версию схемы:
+
+```powershell
+docker compose run --rm api uv run alembic current
+```
