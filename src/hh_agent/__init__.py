@@ -1,0 +1,1 @@
+"""HeadHunter automation assistant package."""
