@@ -8,5 +8,8 @@ wheels/
 
 .idea/
 
+# Environment files
+.env
+
 # Virtual environments
 .venv
